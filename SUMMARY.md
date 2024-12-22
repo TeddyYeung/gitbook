@@ -14,4 +14,4 @@
 * [Gradle, Version Catalog 소개](basics/images-and-media.md)
 * [Maven 과 의존성](basics/interactive-blocks.md)
 * [JetPack 컴포넌트](basics/openapi.md)
-* [Integrations](basics/integrations.md)
+* [람다 - 함수형 인터페이스(SAM 인터페이스)](basics/integrations.md)
