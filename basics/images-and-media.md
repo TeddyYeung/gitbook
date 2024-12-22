@@ -2,7 +2,7 @@
 icon: image-landscape
 ---
 
-# Gradle 소개
+# Gradle, Version Catalog 소개
 
 Gradle는 Java, Kotlin, Android 프로젝트의 빌드를 자동화하고 관리하는 오픈 소스 도구입니다. Android Studio의 기본 빌드 시스템으로, 애플리케이션 개발 과정을 간소화하며 높은 유연성과 확장성을 제공합니다.
 
@@ -75,15 +75,83 @@ Gradle는 Android 애플리케이션을 빌드, 테스트, 배포하는 데 최�
 * **확장성**: 대규모 모듈 프로젝트에 적합.
 * **라이브러리 관리**: 버전 카탈로그로 의존성 관리 간소화.
 
+
+
+### 버전 카탈로그란?
+
+버전 카탈로그(Version Catalog)는 Gradle 7.0 이상에서 제공하는 기능으로, 프로젝트에서 사용하는 라이브러리, 플러그인, 버전 정보를 중앙에서 관리할 수 있게 해줍니다. 이 방식은 의존성 관리를 간소화하고 코드의 가독성과 유지보수성을 높이는 데 도움을 줍니다.
+
+#### 버전 카탈로그의 구성 요소
+
+1. **\[versions]**:
+   * 라이브러리와 플러그인에 사용되는 버전 정보를 정의합니다.
+   * 중복되는 버전 정보를 하나의 장소에서 관리하여 유지보수를 간편하게 합니다.
+2. **\[libraries]**:
+   * 사용할 라이브러리와 그룹, 이름, 버전을 정의합니다.
+   * `version.ref`를 사용하여 \[versions] 섹션에 정의된 버전을 참조합니다.
+3. **\[plugins]** (옵션):
+   * 프로젝트에서 사용하는 Gradle 플러그인의 정보를 정의할 수 있습니다.
+
 #### 버전 카탈로그 예시
 
 ```
 [versions]
 coil = "2.2.0"
+kotlin = "1.8.0"
 
 [libraries]
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version = "1.8.0" }
 ```
+
+#### 버전 카탈로그의 장점
+
+1. **중앙화된 관리**:
+   * 프로젝트 전반에 걸쳐 사용되는 라이브러리와 플러그인의 버전을 한 곳에서 관리할 수 있어 중복을 방지합니다.
+2. **가독성 향상**:
+   * 코드에서 직접 버전을 정의하지 않고 명명된 참조를 사용하므로 의존성 목록이 깔끔해집니다.
+3. **자동 완성 지원**:
+   * Android Studio와 같은 IDE에서 버전 카탈로그를 활용하면 의존성을 추가할 때 자동 완성과 구문 강조 기능을 사용할 수 있습니다.
+4. **동기화 용이**:
+   * 팀에서 작업할 때 버전이 일관되게 유지되므로 충돌 가능성을 줄일 수 있습니다.
+
+***
+
+### Gradle 설정에서의 사용 방법
+
+버전 카탈로그를 사용하려면 `settings.gradle` 또는 `settings.gradle.kts` 파일에 아래 내용을 추가해야 합니다:
+
+```
+enableFeaturePreview('VERSION_CATALOGS')
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            from(files("gradle/libs.versions.toml"))
+        }
+    }
+}
+```
+
+그런 다음, `libs.versions.toml` 파일을 생성하고 위에서 소개한 구성 요소를 정의합니다.
+
+#### 의존성 추가 예시
+
+`build.gradle`에서 라이브러리를 추가할 때는 `libs` 객체를 사용합니다:
+
+```
+dependencies {
+    implementation libs.coil
+    implementation libs.kotlin.stdlib
+}
+```
+
+***
+
+버전 카탈로그는 대규모 프로젝트에서 특히 유용하며, 의존성 관리의 일관성과 효율성을 높이는 데 기여합니다. 이를 활용하면 유지보수와 협업의 부담을 줄이고, 코드의 품질을 향상시킬 수 있습니다.
 
 ***
 
