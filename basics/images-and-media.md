@@ -87,7 +87,7 @@ Gradle는 Android 애플리케이션을 빌드, 테스트, 배포하는 데 최�
     \
 
 
-    <div align="left"><figure><img src="../.gitbook/assets/image.png" alt="" width="360"><figcaption></figcaption></figure></div>
+    <div align="left"><figure><img src="../.gitbook/assets/image (1).png" alt="" width="360"><figcaption></figcaption></figure></div>
 
     * 라이브러리와 플러그인에 사용되는 버전 정보를 정의합니다.
     * 중복되는 버전 정보를 하나의 장소에서 관리하여 유지보수를 간편하게 합니다.
@@ -95,7 +95,7 @@ Gradle는 Android 애플리케이션을 빌드, 테스트, 배포하는 데 최�
     \
 
 
-    <div align="left"><figure><img src="../.gitbook/assets/image (1).png" alt="" width="540"><figcaption></figcaption></figure></div>
+    <div align="left"><figure><img src="../.gitbook/assets/image (1) (1).png" alt="" width="540"><figcaption></figcaption></figure></div>
 
     * 사용할 라이브러리와 그룹, 이름, 버전을 정의합니다.
     * `version.ref`를 사용하여 \[versions] 섹션에 정의된 버전을 참조합니다.
