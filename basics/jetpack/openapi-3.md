@@ -12,7 +12,7 @@ icon: network-wired
     *   **예시:**
 
         ```kotlin
-        kotlin코드 복사@Composable
+        @Composable
         fun Counter() {
             var count by remember { mutableStateOf(0) }
             Button(onClick = { count++ }) {
@@ -26,7 +26,7 @@ icon: network-wired
     *   **예시:**
 
         ```kotlin
-        kotlin코드 복사@Composable
+        @Composable
         fun CounterDisplay(count: Int, onIncrement: () -> Unit) {
             Button(onClick = { onIncrement() }) {
                 Text("Count: $count")
@@ -41,7 +41,7 @@ icon: network-wired
   *   **예시:**
 
       ```kotlin
-      kotlin코드 복사@Composable
+      @Composable
       fun CounterApp() {
           var count by remember { mutableStateOf(0) }
           CounterDisplay(count = count, onIncrement = { count++ })
@@ -60,7 +60,7 @@ Flutter에서도 `StatefulWidget` 대신 상태를 부모로 올리고, `Statele
 *   **Flutter 예시:**
 
     ```dart
-    dart코드 복사class CounterApp extends StatelessWidget {
+    class CounterApp extends StatelessWidget {
       @override
       Widget build(BuildContext context) {
         int count = 0;
