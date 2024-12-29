@@ -20,6 +20,7 @@
   * [Understand State in Compose](basics/jetpack/openapi-2.md)
   * [Understand state hoisting in Compose](basics/jetpack/openapi-3.md)
   * [Kotlin의 Property Delegation과 Compose의 remember 함수 이해하기](basics/jetpack/openapi-4.md)
+  * [Add a ViewModel to a Composable](basics/jetpack/openapi-5.md)
 
 ***
 
