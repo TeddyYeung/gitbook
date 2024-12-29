@@ -126,5 +126,12 @@ fun StateFlowExample(viewModel: StateFlowViewModel = viewModel()) {
 
 #### **Compose State와 StateFlow 차이점**
 
-1. **Compose State**는 단일 Compose 함수 안에서 상태를 관리합니다.
-2. **StateFlow**는 ViewModel 또는 데이터 계층에서 상태를 관리하며, 여러 구독자가 데이터를 공유할 수 있습니다.
+**Compose State**는 단일 Compose 함수 안에서 상태를 관리합니다.\
+\
+\- 쉬운 예시) \
+Compose의 상태는 교실의 칠판과 같습니다. 칠판에 숫자나 글자를 쓰면 모두가 즉시 볼 수 있고, 내용을 지우고 새로 쓰면 즉시 반영됩니다. UI가 데이터를 보고 즉시 업데이트되는 방식이 Compose State의 작동 원리입니다.
+
+**Kotlin StateFlow**는 ViewModel 또는 데이터 계층에서 상태를 관리하며, 여러 구독자가 데이터를 공유할 수 있습니다.\
+\
+\- 쉬운 예시) \
+StateFlow는 뉴스 방송과 비슷합니다. 뉴스 채널이 계속 새로운 소식을 보내면 여러 사람들이 이를 동시에 시청할 수 있습니다. 뉴스가 업데이트되면 모든 시청자가 이를 즉시 확인할 수 있죠. StateFlow는 앱의 여러 부분이 데이터를 듣고 반응할 수 있도록 업데이트를 전달하는 방식으로 작동합니다.\
