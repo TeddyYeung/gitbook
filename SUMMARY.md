@@ -14,7 +14,6 @@
 * [Gradle, Version Catalog 소개](basics/images-and-media.md)
 * [Maven 과 의존성](basics/interactive-blocks.md)
 * [람다 - 함수형 인터페이스(SAM 인터페이스)](basics/integrations.md)
-* [Android에서 인텐트를 활용한 앱 간 통신](basics/integrations-1.md)
 * [JetPack 컴포넌트](basics/jetpack/README.md)
   * [JetPack Compose](basics/jetpack/openapi.md)
   * [Understand Composable Functions](basics/jetpack/openapi-1.md)
@@ -22,6 +21,7 @@
   * [Understand state hoisting in Compose](basics/jetpack/openapi-3.md)
   * [Kotlin의 Property Delegation과 Compose의 remember 함수 이해하기](basics/jetpack/openapi-4.md)
   * [Add a ViewModel to a Composable](basics/jetpack/openapi-5.md)
+* [Android에서 인텐트를 활용한 앱 간 통신](basics/integrations-1.md)
 
 ***
 

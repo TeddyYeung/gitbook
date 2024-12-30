@@ -26,7 +26,7 @@ Android에서 인텐트는 크게 두 가지로 나뉩니다:
 *   **구조:**
 
     ```xml
-    xml코드 복사<activity android:name=".ExampleActivity">
+    <activity android:name=".ExampleActivity">
         <intent-filter>
             <action android:name="android.intent.action.SEND" />
             <category android:name="android.intent.category.DEFAULT" />
@@ -58,7 +58,7 @@ Android에서 인텐트는 크게 두 가지로 나뉩니다:
 
 
 **1) 명시적 인텐트 (Explicit Intent)**\
-같은 앱 내에서 `Activity`를 호출:
+\- 같은 앱 내에서 `Activity`를 호출:
 
 ```kotlin
 val intent = Intent(this, SecondActivity::class.java)
@@ -73,7 +73,7 @@ startActivity(intent)
     * 서비스 시작: 음악 재생 서비스 시작.
 
 **2) 암시적 인텐트 (Implicit Intent)**\
-텍스트 공유 기능 제공:
+\- 텍스트 공유 기능 제공:
 
 ```kotlin
 val shareIntent = Intent(Intent.ACTION_SEND)
