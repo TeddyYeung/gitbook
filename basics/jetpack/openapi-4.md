@@ -6,7 +6,7 @@ icon: network-wired
 
 ***
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Jetpack Compose에서 **Composable의 생명주기**는 다음과 같은 단계로 이루어집니다:
 
