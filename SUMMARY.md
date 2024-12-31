@@ -22,4 +22,5 @@
   * [Kotlin의 Property Delegation과 Compose의 remember 함수 이해하기](basics/jetpack/openapi-4.md)
   * [Add a ViewModel to a Composable](basics/jetpack/openapi-5.md)
 * [Android에서 인텐트를 활용한 앱 간 통신](basics/integrations-1.md)
+* [Android Kotlin에서 Retrofit을 활용한 네트워크 통신](android/integrations-2.md)
 * [Vector Drawable](android/vector-drawable.md)
