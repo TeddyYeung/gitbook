@@ -23,5 +23,5 @@
   * [Add a ViewModel to a Composable](basics/jetpack/openapi-5.md)
 * [Android에서 인텐트를 활용한 앱 간 통신](basics/integrations-1.md)
 * [Android Kotlin에서 Retrofit을 활용한 네트워크 통신](android/integrations-2.md)
-* [Coroutines](android/integrations-3.md)
+* [코루틴 개념 및 사용](android/integrations-3.md)
 * [Vector Drawable](android/vector-drawable.md)
