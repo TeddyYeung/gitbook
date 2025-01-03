@@ -2,22 +2,44 @@
 icon: bullseye-arrow
 ---
 
-# Quickstart
+# 부드럽고 명확하게 잘못을 지적하는 5단계
 
-<figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-hero.png" alt=""><figcaption></figcaption></figure>
+#### 부드럽고 명확하게 잘못을 지적하는 5단계
 
-Beautiful documentation starts with the content you create — and GitBook makes it easy to get started with any pre-existing content.
+**피드백의 중요성**
 
-{% hint style="info" %}
-Want to learn about writing content from scratch? Head to the [Basics](https://github.com/GitbookIO/onboarding-template/blob/main/getting-started/broken-reference/README.md) section to learn more.
-{% endhint %}
+상대의 잘못을 지적하고 변화를 이끄는 대화는 일상과 직장에서 피할 수 없는 일이다.\
+회피하거나 감정적으로 대응하거나 모호하게 말하면 문제를 더 복잡하게 만들 뿐이다.\
+진짜 효과적인 피드백은 상대가 스스로 문제를 인식하고 행동을 바꾸도록 돕는 데 있다.
 
-### Import
+**핵심 원칙: 공을 넘기기**
 
-GitBook supports importing content from many popular writing tools and formats. If your content already exists, you can upload a file or group of files to be imported.
+모든 문제를 내가 주도하려 하지 말고, 상대가 스스로 해결책을 찾고 실행하게 만드는 것이 중요하다.
 
-<div data-full-width="false"><figure><img src="https://gitbookio.github.io/onboarding-template-images/quickstart-import.png" alt=""><figcaption></figcaption></figure></div>
+#### 잘못을 지적하는 5단계
 
-### Sync a repository
+1. **공식적인 시간 마련하기**\
+   비공식적으로 흘리듯 말하거나 식사 중에 언급하면 대화가 가볍게 여겨지거나 오해를 살 수 있다.\
+   문제를 진지하게 다루고 싶다면 정식으로 시간을 잡고 대화를 제안하는 것이 좋다.\
+   예를 들어, 자료 분석에 시간을 과도하게 써서 데드라인을 놓치는 문제를 지적하려면, 따로 미팅 시간을 정해 차분히 이야기하는 것이 효과적이다.
+2. **구체적인 관찰로 시작하기**\
+   문제를 지적할 때는 추상적인 비판이 아니라 구체적인 사실과 사례를 기반으로 접근해야 한다.\
+   "최근 프로젝트에서 자료 분석 데드라인이 두 번 미뤄지면서 전체 일정에 영향을 줬어요."처럼 명확하고 사실적인 근거를 제시한다.\
+   상대가 이 점을 인지하고 있는지 물어보는 것도 중요하다.
+3. **상대의 관점 묻기**\
+   단정짓기보다, "왜 이런 문제가 생겼다고 생각하세요?" 또는 "어떤 점이 어려웠나요?"처럼 질문을 던져 상대의 생각을 듣는다.\
+   이 과정에서 상대는 문제를 스스로 더 명확히 인식할 수 있고, 본인이 문제의 원인을 설명하며 책임감을 느낄 가능성도 높아진다.
+4. **함께 해결책 찾기**\
+   상대가 제안한 해결책을 존중하면서도 내가 가진 추가적인 아이디어를 보탠다.\
+   예를 들어, 상대가 "타 부서와 협력을 강화하겠다"고 하면, "그럼 아침 시간을 이메일 방해 없이 집중해서 업무할 시간으로 정하는 건 어때요?"라고 제안할 수 있다.\
+   단, 결과만 강조하기보다 실행 가능한 구체적인 행동을 논의하는 것이 핵심이다.
+5. **후속 조치 구체화하기**\
+   말로만 끝나면 실질적인 변화가 이루어지지 않는다.\
+   예를 들어, "한 달 뒤에 다시 만나 이번에 논의한 방안이 얼마나 효과적이었는지 함께 점검해 봐요."처럼 구체적인 일정과 목표를 정해 두면 좋다.\
+   이를 캘린더에 기록해 서로 확인하면 더 명확해진다.
 
-GitBook also allows you to set up a bi-directional sync with an existing repository on GitHub or GitLab. Setting up Git Sync allows you and your team to write content in GitBook or in code, and never have to worry about your content becoming out of sync.
+#### 핵심 요약
+
+감정적으로 대응하지 말고, 관찰된 사실을 바탕으로 상대와 대화하라.\
+문제의 원인과 해결책을 상대가 스스로 인식하게 만들고, 행동을 바꿀 수 있도록 지원하라.\
+구체적인 실행 계획과 목표를 정해 지속적으로 변화를 이끌어내는 것이 중요하다.

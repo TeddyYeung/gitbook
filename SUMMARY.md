@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-* [Quickstart](getting-started/quickstart.md)
+* [부드럽고 명확하게 잘못을 지적하는 5단계](getting-started/quickstart.md)
 * [Publish your docs](getting-started/publish-your-docs.md)
 
 ## Android 공부&#x20;
