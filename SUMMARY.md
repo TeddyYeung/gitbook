@@ -2,10 +2,10 @@
 
 * [Welcome](README.md)
 
-## 리더쉽 생각
+## Leadership Playbook
 
-* [부드럽고 명확하게 잘못을 지적하는 5단계](undefined/quickstart.md)
-* [Publish your docs](undefined/publish-your-docs.md)
+* [부드럽고 명확하게 잘못을 지적하는 5단계](leadership-playbook/quickstart.md)
+* [리더가 된다면](leadership-playbook/publish-your-docs.md)
 
 ## Android 공부&#x20;
 
