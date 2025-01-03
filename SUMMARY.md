@@ -2,10 +2,10 @@
 
 * [Welcome](README.md)
 
-## Getting Started
+## 리더쉽 생각
 
-* [부드럽고 명확하게 잘못을 지적하는 5단계](getting-started/quickstart.md)
-* [Publish your docs](getting-started/publish-your-docs.md)
+* [부드럽고 명확하게 잘못을 지적하는 5단계](undefined/quickstart.md)
+* [Publish your docs](undefined/publish-your-docs.md)
 
 ## Android 공부&#x20;
 
