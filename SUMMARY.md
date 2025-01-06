@@ -30,3 +30,4 @@
 
 * [Linux](linux.md)
 * [알고리즘 & 자료구조](and.md)
+* [Computer Science](computer-science.md)
