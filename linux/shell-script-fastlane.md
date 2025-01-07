@@ -11,7 +11,7 @@ Fastlane은 기본적으로 \*\*단일 프로세스(싱글 쓰레드)\*\*로 동
 **2. Shell Script로 병렬 실행하기**
 
 ```bash
-bash코드 복사#!/bin/bash
+#!/bin/bash
 
 # iOS와 Android Fastlane 명령어 병렬 실행
 fastlane ios beta &    # iOS 배포를 백그라운드에서 실행
@@ -54,7 +54,7 @@ echo "iOS and Android Fastlane processes completed."
     * 병렬 실행 시 로그 출력이 섞일 수 있으므로 별도의 파일로 저장 추천.
 
     ```bash
-    bash코드 복사fastlane ios beta > ios_log.txt 2>&1 &
+    fastlane ios beta > ios_log.txt 2>&1 &
     fastlane android beta > android_log.txt 2>&1
     ```
 3. **환경 변수 분리**:
@@ -69,7 +69,7 @@ echo "iOS and Android Fastlane processes completed."
 `flutter clean`을 적용하고, 아래의 명령어로 각 플랫폼의 빌드 디렉토리를 정리한 후 배포 순서를 변경하여 테스트한 결과는 다음과 같습니다:
 
 ```bash
-bash코드 복사flutter clean
+flutter clean
 rm -rf android/build
 rm -rf ios/Pods ios/Flutter/Flutter.framework ios/build
 rm -rf build/
