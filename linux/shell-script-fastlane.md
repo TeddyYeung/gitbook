@@ -13,13 +13,39 @@ Fastlane은 기본적으로 \*\*단일 프로세스(싱글 쓰레드)\*\*로 동
 ```bash
 #!/bin/bash
 
-# iOS와 Android Fastlane 명령어 병렬 실행
-fastlane ios beta &    # iOS 배포를 백그라운드에서 실행
-fastlane android beta  # Android 배포 실행
+  if [[ "$platform" == "$platform_ios" ]]; then
+    deploy_ios
+  elif [[ "$platform" == "$platform_aos" ]]; then
+    deploy_aos
+  elif [[ "$platform" == "$platform_both" ]]; then
+#   순차 배포:  deploy_aos && deploy_ios
 
-# 모든 프로세스가 종료될 때까지 대기
-wait
-echo "iOS and Android Fastlane processes completed."
+#   아래는 백그라운드 배포
+    deploy_aos &
+    pid_aos=$!
+
+    deploy_ios &
+    pid_ios=$!
+
+    # AOS 작업의 종료 상태 확인
+    wait $pid_aos
+    status_aos=$?
+
+    # iOS 작업의 종료 상태 확인
+    wait $pid_ios
+    status_ios=$?
+
+    echo "AOS deploy exit status: $status_aos"
+    echo "iOS deploy exit status: $status_ios"
+
+    # 두 작업 모두 성공 시 성공 처리
+    if [[ $status_aos -eq 0 && $status_ios -eq 0 ]]; then
+      echo "✅ Both AOS and iOS deployed successfully."
+      return 0
+    else
+      echo "❌ One or both deployments failed."
+      return 1
+    fi
 ```
 
 * **`&`**: 명령어를 백그라운드에서 실행.
