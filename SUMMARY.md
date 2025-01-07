@@ -28,6 +28,7 @@
 
 ***
 
-* [Linux](linux.md)
+* [Linux](linux/README.md)
+  * [플러터에서 Shell Script로 Fastlane 두 개를 병렬 실행하는 방법](linux/shell-script-fastlane.md)
 * [알고리즘 & 자료구조](and.md)
 * [Computer Science](computer-science.md)
