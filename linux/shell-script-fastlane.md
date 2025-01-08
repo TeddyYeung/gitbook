@@ -1,10 +1,11 @@
 # 플러터에서 Shell Script로 Fastlane 두 개를 병렬 실행하는 방법
 
-#### **플러터에서 Shell Script로 Fastlane 두 개를 병렬 실행하는 방법**
-
 **1. Fastlane 병렬 실행의 핵심**
 
-Fastlane은 기본적으로 \*\*단일 프로세스(싱글 쓰레드)\*\*로 동작합니다. Shell Script를 이용해 각각의 Fastlane 프로세스를 독립적으로 실행하면 병렬 배포가 가능합니다.
+* Fastlane은 기본적으로 단일 프로세스(싱글 쓰레드)로 동작합니다. \
+  이를 통해 안정성을 유지할 수 있지만, 병렬 처리가 기본적으로 지원되지 않기 때문에 \
+  AOS(Android)와 iOS를 동시에 배포하는 병렬 배포는 불가능한 한계가 있습니다.
+* Shell Script를 이용해 각각의 Fastlane 프로세스를 독립적으로 실행하면 병렬 배포가 가능합니다.
 
 ***
 
@@ -13,39 +14,47 @@ Fastlane은 기본적으로 \*\*단일 프로세스(싱글 쓰레드)\*\*로 동
 ```bash
 #!/bin/bash
 
-  if [[ "$platform" == "$platform_ios" ]]; then
+if [[ "$platform" == "$platform_ios" ]]; then
+    # iOS 배포 함수 실행
     deploy_ios
-  elif [[ "$platform" == "$platform_aos" ]]; then
+elif [[ "$platform" == "$platform_aos" ]]; then
+    # AOS(Android) 배포 함수 실행
     deploy_aos
-  elif [[ "$platform" == "$platform_both" ]]; then
-#   순차 배포:  deploy_aos && deploy_ios
+elif [[ "$platform" == "$platform_both" ]]; then
+    # 기존 순차 배포: AOS 배포 후 iOS 배포 실행 (동기적 처리)
+    # deploy_aos && deploy_ios
 
-#   아래는 백그라운드 배포
-    deploy_aos &
-    pid_aos=$!
+    # 아래는 병렬 배포 (비동기 처리)
+    deploy_aos &              # AOS 배포를 백그라운드에서 실행
+    pid_aos=$!                # 백그라운드에서 실행된 AOS 배포 프로세스의 PID 저장
 
-    deploy_ios &
-    pid_ios=$!
+    deploy_ios &              # iOS 배포를 백그라운드에서 실행
+    pid_ios=$!                # 백그라운드에서 실행된 iOS 배포 프로세스의 PID 저장
 
-    # AOS 작업의 종료 상태 확인
-    wait $pid_aos
-    status_aos=$?
+    # AOS 배포 프로세스의 종료를 기다리고 종료 상태를 확인
+    wait $pid_aos             # AOS 배포 프로세스가 종료될 때까지 대기
+    status_aos=$?             # AOS 배포 프로세스의 종료 상태를 저장 (0: 성공, 그 외: 실패)
 
-    # iOS 작업의 종료 상태 확인
-    wait $pid_ios
-    status_ios=$?
+    # iOS 배포 프로세스의 종료를 기다리고 종료 상태를 확인
+    wait $pid_ios             # iOS 배포 프로세스가 종료될 때까지 대기
+    status_ios=$?             # iOS 배포 프로세스의 종료 상태를 저장 (0: 성공, 그 외: 실패)
 
+    # 각 배포 결과 출력
     echo "AOS deploy exit status: $status_aos"
     echo "iOS deploy exit status: $status_ios"
 
-    # 두 작업 모두 성공 시 성공 처리
+    # 두 배포 작업이 모두 성공했는지 확인
     if [[ $status_aos -eq 0 && $status_ios -eq 0 ]]; then
+      # AOS와 iOS 배포 모두 성공한 경우
       echo "✅ Both AOS and iOS deployed successfully."
       return 0
     else
+      # 하나 이상의 배포 작업이 실패한 경우
       echo "❌ One or both deployments failed."
       return 1
     fi
+fi
+
 ```
 
 * **`&`**: 명령어를 백그라운드에서 실행.
