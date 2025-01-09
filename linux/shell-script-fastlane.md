@@ -1,5 +1,32 @@
 # 플러터에서 Shell Script로 Fastlane 두 개를 병렬 실행하는 방법
 
+####
+
+```makefile
+space_auth:
+    @echo "Running spaceAuth..."
+    @yes y | fastlane spaceauth -u {yourEmail}
+```
+
+* `spaceauth`는 2FA 토큰 기반 인증인 Fastlane의 기능으로, \
+  App Store Connect API 인증을 위해 사용자에게 임시 인증 토큰을 생성합니다.
+* 예전에 사용해봤던 App Store Connect API Key를 발급받아 사용하는 인증 방식이 관리하기 더 편리하지만, \
+  사용 간편함을 위해 `spaceauth를 사용중입니다.`&#x20;
+* `fastlane spaceauth -u {yourEmail}`: 해당 이메일로 Apple 계정에 로그인하여 인증을 진행합니다.
+* `yes y |`: 인증 과정에서 요구되는 "확인" 응답을 자동으로 처리합니다.
+
+```makefile
+deploy:
+    @$(MAKE) space_auth
+    @sh deploy.sh
+```
+
+* **역할**:
+  * `space_auth`를 먼저 실행하여 인증을 갱신한 후, `deploy.sh` 스크립트를 실행하여 실제 배포 작업을 수행합니다.
+  * 이를 통해 2FA 인증이 만료되었거나 새로운 토큰이 필요한 경우에도 문제없이 배포가 가능합니다.
+
+
+
 **1. Fastlane 병렬 실행의 핵심**
 
 * Fastlane은 기본적으로 단일 프로세스(싱글 쓰레드)로 동작합니다. \
