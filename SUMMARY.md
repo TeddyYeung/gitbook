@@ -5,6 +5,7 @@
 ## Leadership Playbook
 
 * [부드럽고 명확하게 잘못을 지적하는 5단계](leadership-playbook/quickstart.md)
+* [진정한 리더십이란 무엇인가: 타이틀이 아닌 따르는 사람들](leadership-playbook/quickstart-1.md)
 * [리더가 된다면](leadership-playbook/publish-your-docs.md)
 
 ## Android 공부&#x20;
