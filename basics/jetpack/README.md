@@ -18,4 +18,4 @@ description: >-
 Jetpack을 사용하면 적은 코드로 높은 품질의 앱을 개발할 수 있다.\
 쉽게 말해, Jetpack은 안드로이드 개발을 **더 효율적이고 편리하게 만들어주는 도구들의 집합**
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
