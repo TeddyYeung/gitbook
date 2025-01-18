@@ -37,4 +37,5 @@
 
 ## Group 1
 
+* [인증 보안 시나리오](group-1/undefined.md)
 * [네트워크 & 보안 - 데이터 암호화](group-1/and.md)
