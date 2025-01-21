@@ -35,7 +35,11 @@
 * [Computer Science](computer-science.md)
 * [KeyWords](keywords.md)
 
-## Group 1
+## 네트워크 & 보안
 
-* [인증 보안 시나리오](group-1/undefined.md)
-* [네트워크 & 보안 - 데이터 암호화](group-1/and.md)
+* [인증 보안 시나리오](and-1/undefined.md)
+* [네트워크 & 보안 - 데이터 암호화](and-1/and.md)
+
+## 클린코드
+
+* [Page 1](undefined/page-1.md)
