@@ -42,4 +42,5 @@
 
 ## 클린코드
 
-* [좋은 코드의 기준 - 토스](undefined/undefined.md)
+* [객체 지향](undefined/undefined.md)
+* [좋은 코드의 기준 - 토스](undefined/undefined-1.md)
