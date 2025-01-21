@@ -51,4 +51,31 @@ icon: globe-pointer
     #### 3. 파트너십의 중요성
 
     리더십과 팔로워십의 조화는 조직 구성원이 함께 성장하는 이상적인 형태로, 장기적으로 조직의 발전을 이끕니다.\
-    \
+
+
+
+
+
+
+실리콘밸리 1 On 1 피드백&#x20;
+
+```
+The Effective Manager
+1. Know Your People
+    a. 팀원에게 아이가 있다면 이름을 알고 있는지?
+2. Talk About Performance Regularly
+    a. 더 좋은 성과를 낼 방법에 대해 주기적으로 논의
+    b. 방향성, 우선 순위, 업무 완료 기준, 생산성 등등
+3. Ask For More
+    a. 우수 팀원이 더 성장하게 챌린지/지원
+4. Push Work Down
+    a. 팀원이 할 수 있는 일을 본인이 하지 말 것!
+5. Make one-on-one meetings
+    a. 위를 달성하는데 일대일 미팅이 가작 효율적인 툴
+```
+
+
+
+
+
+* [https://youtu.be/oTpo8d926\_M?si=ZNfyKibMSqghzTVD](https://youtu.be/oTpo8d926_M?si=ZNfyKibMSqghzTVD)\
