@@ -42,4 +42,4 @@
 
 ## 클린코드
 
-* [Page 1](undefined/page-1.md)
+* [좋은 코드의 기준 - 토스](undefined/undefined.md)
