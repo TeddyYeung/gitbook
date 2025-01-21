@@ -41,3 +41,9 @@ icon: bullseye-arrow
 감정적으로 대응하지 말고, 관찰된 사실을 바탕으로 상대와 대화하라.\
 문제의 원인과 해결책을 상대가 스스로 인식하게 만들고, 행동을 바꿀 수 있도록 지원하라.\
 구체적인 실행 계획과 목표를 정해 지속적으로 변화를 이끌어내는 것이 중요하다.
+
+
+
+맥킨지 컨설턴트 출신 여성 리더의 피드백 방식&#x20;
+
+[https://youtu.be/sL108V3m9h0?si=NfMsCmo4pg7ecn9s](https://youtu.be/sL108V3m9h0?si=NfMsCmo4pg7ecn9s)
