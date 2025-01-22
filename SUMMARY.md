@@ -42,5 +42,5 @@
 
 ## 클린코드
 
-* [객체 지향](undefined/undefined.md)
-* [좋은 코드의 기준 - 토스](undefined/undefined-1.md)
+* [\[객체지향 원칙\] 묻지 말고 말하라 TDA 원칙(Tell, Don’t Ask Principle)](undefined/tda-tell-dont-ask-principle.md)
+* [좋은 코드의 기준 - 토스](undefined/undefined.md)
