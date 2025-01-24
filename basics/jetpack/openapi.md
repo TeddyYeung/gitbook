@@ -58,7 +58,7 @@ fun DefaultPreview() {
 
 Android Studio에서 미리보기를 사용하려면 구성 가능한 함수에 `@Preview` 주석을 추가하고 프로젝트를 빌드 하면 된다. 또한, 동일한 파일에 여러 개의 미리보기를 생성하고 이름을 지정할 수도 있다.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

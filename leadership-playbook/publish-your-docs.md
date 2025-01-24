@@ -34,7 +34,7 @@ icon: globe-pointer
     \- 팔로워십에는 여러 유형이 존재하므로, 리더는 팀원들의 팔로워십 유형을 정확히 파악하고, 이를 조직 운영과 성장에 어떻게 효과적으로 적용할 수 있을지 고민해야 합니다.\
 
 
-    <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 3.  팀원 구성원들에게 팔로워쉽을 알려주자 (리더쉽과 팔로워십의 선순환) \
     \- 내가 그동안 리더들이 올바른 방향으로 의사결정할 수 있게끔 서포트했던 경험들을 토대로  \
     좋은 리더로 성장하는 방법은 바로 좋은 팔로워가 되는 것임을 알려주기 \

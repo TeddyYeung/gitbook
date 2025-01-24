@@ -1,6 +1,6 @@
 ---
-description: 'Jetpack Compose 상태 관리: 핵심 개념'
 icon: network-wired
+description: 'Jetpack Compose 상태 관리: 핵심 개념'
 ---
 
 # Understand State in Compose
@@ -11,7 +11,7 @@ icon: network-wired
 
 Compose  Runtime은 화면의 렌더링 업데이트를 주시하는가?
 
-<div align="left"><figure><img src="../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption><p>Compose  는 호출되는 모든 구성 가능한 함수들을 추적합니다. </p></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/image (4) (1).png" alt="" width="563"><figcaption><p>Compose  는 호출되는 모든 구성 가능한 함수들을 추적합니다. </p></figcaption></figure></div>
 
 * 입력된 데이터의 스냅샷을 생성합니다.
 * 각 Composable 은 상태와 함께 테이블에 저장됩니다.&#x20;
