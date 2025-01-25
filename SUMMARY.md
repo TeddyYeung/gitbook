@@ -47,4 +47,5 @@
 
 ## DDD 아키텍처
 
+* [일급 컬렉션과 애그리게이트](ddd/undefined.md)
 * [Value Objects (VO) 값 객체](ddd/value-objects-vo.md)
