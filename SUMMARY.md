@@ -53,4 +53,4 @@
 ## 객체지향 생활체조 원칙 (Object Calisthenics)
 
 * [1.  한 메서드에 오직 한 단계의 들여쓰기만 한다.](object-calisthenics/1.-..md)
-* [2: else 예약어 금지 & 다형성으로 IF문, Switch문 리팩토링하기](object-calisthenics/2-else-and-if-switch.md)
+* [2: else 예약어 금지 & 다형성으로 IF문, Switch문 리팩토링하기](object-calisthenics/2-else-dont-use-the-else-keyword.md)

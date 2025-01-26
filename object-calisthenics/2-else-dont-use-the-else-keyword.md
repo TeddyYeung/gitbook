@@ -281,7 +281,7 @@ case NotificationType.type3:
 
 `switch-case` 구조에서는 하나의 함수(`sendNotification`)가 모든 상태(NotificationType)에 대한 처리를 담당하고 있습니다. 이로 인해 다음 문제가 발생합니다:
 
-* 함수가 \*\*단일 책임 원칙(SRP)\*\*을 위반합니다.
+* 함수가 단일 책임 원칙(SRP)을 위반합니다.
   * `sendNotification`은 알림을 "전송"하는 것 외에, 각 상태의 구체적인 처리를 "결정"하는 책임도 가지고 있습니다.
 * 새로운 상태가 추가될 때마다, 함수가 점점 더 많은 책임을 떠안게 되어 유지보수가 어려워집니다.
 
@@ -377,7 +377,7 @@ void main() {
 * Step 3에서 여전히 갖고 있는 문제점
 
 1. **OCP 위반**
-   * 새로운 `NotificationType`이 추가될 때마다 `switch-case`에 새로운 `case`를 추가해야 합니다. 이는 기존 코드를 수정해야 하는 구조이므로 \*\*개방-폐쇄 원칙(OCP)\*\*에 어긋납니다.
+   * 새로운 `NotificationType`이 추가될 때마다 `switch-case`에 새로운 `case`를 추가해야 합니다. 이는 기존 코드를 수정해야 하는 구조이므로 개방-폐쇄 원칙(OCP)에 어긋납니다.
 2. **높은 결합도**
    * `NotificationType`과 `NotificationSender` 클래스가 팩토리 메서드 내부에서 강하게 결합되어 있습니다. 이러한 결합은 확장성과 유지보수성을 낮춥니다.
 3. **책임 과도**
