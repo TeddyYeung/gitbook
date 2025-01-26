@@ -44,5 +44,144 @@ void updateUserProfile(String username, BuildContext context) {
    * 조건이 실패했을 때 즉시 종료(`return`)하기 때문에, 나머지 코드는 정상 상태에서의 작업에만 집중할 수 있습니다.
    * 결과적으로 코드의 논리가 더 직관적으로 보입니다.
 
+### 2.  조건문을 다형성으로 바꾸기 (Replace Conditional with _PolyMorphism)_
+
+#### 기존 코드 (Before)
+
+조건문과 `else`를 사용하여 상태에 따라 출력 메시지를 처리하는 코드:
+
+```dart
+void handleButtonPress(String status) {
+  if (status == 'loading') {
+    print('Loading... Please wait');
+  } else if (status == 'success') {
+    print('Operation successful!');
+  } else if (status == 'error') {
+    print('An error occurred. Try again.');
+  } else {
+    print('Unknown status');
+  }
+}
+```
+
+**문제점:**
+
+1. 상태가 늘어날수록 `if-else` 블록이 길어지고 유지보수가 어려워짐.
+2. 각 상태의 동작이 분리되지 않아 코드가 응집력이 낮음.
+
+***
+
+#### 다형성 기반으로 리팩토링 (After)
+
+**Step 1: 상태별 동작을 추상화**
+
+상태별 동작을 정의하는 `ButtonState`라는 추상 클래스를 생성합니다.
+
+```dart
+abstract class ButtonState {
+  void handle();
+}
+```
+
+**Step 2: 상태별 클래스를 구현**
+
+각 상태에 대해 클래스를 생성하고, 해당 상태에서 수행할 동작을 `handle` 메서드에 정의합니다.
+
+```dart
+class LoadingState implements ButtonState {
+  @override
+  void handle() {
+    print('Loading... Please wait');
+  }
+}
+
+class SuccessState implements ButtonState {
+  @override
+  void handle() {
+    print('Operation successful!');
+  }
+}
+
+class ErrorState implements ButtonState {
+  @override
+  void handle() {
+    print('An error occurred. Try again.');
+  }
+}
+
+class UnknownState implements ButtonState {
+  @override
+  void handle() {
+    print('Unknown status');
+  }
+}
+```
+
+**Step 3: 다형성을 활용한 메서드 작성**
+
+`ButtonState` 객체를 받아 해당 상태에 맞는 동작을 실행하도록 메서드를 수정합니다.
+
+```dart
+void handleButtonPress(ButtonState state) {
+  state.handle();
+}
+```
+
+***
+
+**Step 4: 상태를 매핑하는 팩토리 메서드**
+
+문자열 `status` 값을 상태 객체로 매핑하는 팩토리 메서드를 추가합니다. 이를 통해 기존 코드의 호환성을 유지합니다.
+
+```dart
+ButtonState getStateFromStatus(String status) {
+  switch (status) {
+    case 'loading':
+      return LoadingState();
+    case 'success':
+      return SuccessState();
+    case 'error':
+      return ErrorState();
+    default:
+      return UnknownState();
+  }
+}
+```
+
+***
+
+**Step 5: 리팩토링된 코드 사용**
+
+상태 문자열을 기반으로 상태 객체를 생성하고, `handleButtonPress` 메서드로 전달합니다.
+
+```dart
+void main() {
+  String status = 'loading';
+  ButtonState state = getStateFromStatus(status);
+  handleButtonPress(state); // Output: Loading... Please wait
+
+  status = 'success';
+  state = getStateFromStatus(status);
+  handleButtonPress(state); // Output: Operation successful!
+
+  status = 'error';
+  state = getStateFromStatus(status);
+  handleButtonPress(state); // Output: An error occurred. Try again.
+
+  status = 'unknown';
+  state = getStateFromStatus(status);
+  handleButtonPress(state); // Output: Unknown status
+}
+```
+
+***
+
+#### 개선된 점:
+
+1. **조건문 제거**: 상태별 로직이 객체로 분리되어 `if-else` 문을 없앴습니다.
+2. **확장성 증가**: 새로운 상태를 추가할 때 기존 코드를 수정할 필요 없이 새로운 클래스를 추가하기만 하면 됩니다.
+3. **응집력 향상**: 각 상태의 동작이 독립적으로 정의되어 코드가 더 모듈화되었습니다.
+4. **가독성 향상**: 상태와 동작의 관계가 명확하게 드러나고, 코드의 흐름을 쉽게 이해할 수 있습니다.
+
 
 
