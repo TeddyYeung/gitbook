@@ -49,3 +49,7 @@
 
 * [일급 컬렉션과 애그리게이트](ddd/undefined.md)
 * [Value Objects (VO) 값 객체](ddd/value-objects-vo.md)
+
+## 객체지향 생활체조 원칙 (Object Calisthenics)
+
+* [1.  한 메서드에 오직 한 단계의 들여쓰기만 한다.](object-calisthenics/1.-..md)
