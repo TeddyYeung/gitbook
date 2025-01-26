@@ -188,8 +188,6 @@ void main() {
 3. **응집력 향상**: 각 상태의 동작이 독립적으로 정의되어 코드가 더 모듈화되었습니다.
 4. **가독성 향상**: 상태와 동작의 관계가 명확하게 드러나고, 코드의 흐름을 쉽게 이해할 수 있습니다.
 
-
-
 ### 2-2. Enum 기반 조건문에서 다형성으로 리팩토링
 
 ### 기존 코드 (Before) : **Enum 기반 조건문 사용**
@@ -370,6 +368,37 @@ void main() {
 }
 ```
 
+#### **Step 5: Step 3 좀 더 객체지향적으로 개선해보기**&#x20;
+
+* Step 3에서 여전히 갖고 있는 문제점
+
+1. **OCP 위반**
+   * 새로운 `NotificationType`이 추가될 때마다 `switch-case`에 새로운 `case`를 추가해야 합니다. 이는 기존 코드를 수정해야 하는 구조이므로 \*\*개방-폐쇄 원칙(OCP)\*\*에 어긋납니다.
+2. **높은 결합도**
+   * `NotificationType`과 `NotificationSender` 클래스가 팩토리 메서드 내부에서 강하게 결합되어 있습니다. 이러한 결합은 확장성과 유지보수성을 낮춥니다.
+3. **책임 과도**
+   * 팩토리 메서드가 모든 타입별 객체 생성을 담당하고 있어 단일 책임 원칙(SRP)을 위반할 가능성이 있습니다.
+
+#### &#x20; 리팩토링된 코드 : Map 기반 동적 팩토리&#x20;
+
+```dart
+// 동적 매핑 기반 팩토리
+class NotificationSenderFactory {
+  static final Map<NotificationType, NotificationSender> _senderMap = {
+    NotificationType.email: EmailNotificationSender(),
+    NotificationType.sms: SmsNotificationSender(),
+    NotificationType.push: PushNotificationSender(),
+    NotificationType.inApp: InAppNotificationSender(), // 새로운 상태 추가
+  };
+
+  // 객체 반환 메서드
+  static NotificationSender getNotificationSender(NotificationType type) {
+    return _senderMap[type] ??
+        (throw Exception("NotificationSender not found for type: $type"));
+  }
+}
+```
+
 ***
 
 #### 개선된 점
@@ -383,6 +412,20 @@ void main() {
    * 각 알림 유형에 대한 동작은 해당 클래스로 분리되어 각 클래스가 하나의 책임만 갖도록 모듈화되었습니다. 이로 인해 코드의 응집도가 향상됩니다.
 4. **테스트 용이성**:
    * 각 클래스가 독립적이므로, 개별적으로 단위 테스트를 할 수 있어 테스트가 용이해졌습니다.
+
+**Step 6: 최종적으로 리팩토링된 코드 사용**
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### 결론
 
