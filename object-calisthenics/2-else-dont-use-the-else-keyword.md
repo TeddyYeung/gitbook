@@ -1,6 +1,6 @@
 # 2: else 예약어 금지 (Don't Use the ELSE Keyword)
 
-**문제점: 왜 `else`를 피해야 할까?**
+### **문제점: 왜 `else`를 피해야 할까?**
 
 1. **불필요한 중첩**: `else`를 사용하면 들여쓰기가 깊어지고 코드의 흐름을 따라가기 어려워집니다.
 2. **불명확한 의도**: `else`가 포함된 조건문은 논리적으로 의도를 파악하기 어려울 수 있습니다.
@@ -8,7 +8,7 @@
 
 주로 사용할 수 있는 방식은 3가지가 있겠습니다.&#x20;
 
-### 1.  Return Early Pattern (Early Return & Fail Fast)
+## 1.  Return Early Pattern (Early Return & Fail Fast)
 
 **Before: `else`를 사용한 코드**
 
@@ -44,18 +44,16 @@ void updateUserProfile(String username, BuildContext context) {
    * 조건이 실패했을 때 즉시 종료(`return`)하기 때문에, 나머지 코드는 정상 상태에서의 작업에만 집중할 수 있습니다.
    * 결과적으로 코드의 논리가 더 직관적으로 보입니다.
 
-### 2.  조건문을 다형성으로 바꾸기 (Replace Conditional with _PolyMorphism)_
-
-
+## 2.  조건문을 다형성으로 바꾸기 (Replace Conditional with _PolyMorphism)_
 
 조건문을 다형성으로 바꾸는 리팩토링 기법은 코드의 유지보수성을 높이고 확장성을 개선하는 데 유용합니다.
 
 &#x20;아래에서 `if-else`나 `switch-case`를 다형성으로 대체하는 방법을 설명하겠습니다. \
 이 방식은 보통 상태에 따라 다르게 행동해야 하는 경우나, 반복적으로 조건문을 사용하는 경우에 효과적입니다.
 
-#### 기존 코드 (Before)
+### 2-1. IF문 개선하기&#x20;
 
-조건문과 `else`를 사용하여 상태에 따라 출력 메시지를 처리하는 코드:
+### 기존 코드 (Before) : 조건문과 `else`를 사용하여 상태에 따라 출력 메시지를 처리하는 코드
 
 ```dart
 void handleButtonPress(String status) {
@@ -78,7 +76,7 @@ void handleButtonPress(String status) {
 
 ***
 
-#### 다형성 기반으로 리팩토링 (After)
+### 다형성 기반으로 리팩토링 (After)
 
 **Step 1: 상태별 동작을 추상화**
 
@@ -192,3 +190,200 @@ void main() {
 
 
 
+### 2-2. Enum 기반 조건문에서 다형성으로 리팩토링
+
+### 기존 코드 (Before) : **Enum 기반 조건문 사용**
+
+먼저, 기존 코드에서는 `enum`과 `switch-case`를 사용하여 알림 유형에 따라 메시지를 처리합니다.&#x20;
+
+```dart
+enum NotificationType {
+  email,
+  sms,
+  push,
+}
+
+void sendNotification(NotificationType type, String message) {
+  switch (type) {
+    case NotificationType.email:
+      print('Sending email: $message');
+      break;
+    case NotificationType.sms:
+      print('Sending SMS: $message');
+      break;
+    case NotificationType.push:
+      print('Sending push notification: $message');
+      break;
+  }
+}
+```
+
+#### **문제점**
+
+**1. 새로운 상태가 추가될 때 기존 코드를 수정해야 함**
+
+예를 들어, 기존 코드에서 새로운 상태 `NotificationType.inApp`이 추가된다고 가정합니다.
+
+1. `enum NotificationType`에 새로운 값을 추가.
+2. `sendNotification` 함수에 새로운 `case` 분기 추가.
+
+```dart
+enum NotificationType {
+  email,
+  sms,
+  push,
+  inApp, // 새로운 상태 추가
+}
+
+void sendNotification(NotificationType type, String message) {
+  switch (type) {
+    case NotificationType.email:
+      print('Sending email: $message');
+      break;
+    case NotificationType.sms:
+      print('Sending SMS: $message');
+      break;
+    case NotificationType.push:
+      print('Sending push notification: $message');
+      break;
+    case NotificationType.inApp: // 새로운 상태에 대한 분기 추가
+      print('Sending in-app notification: $message');
+      break;
+  }
+}
+```
+
+* 새로운 상태를 처리하기 위해 **기존의 `sendNotification` 함수 내부를 수정해야만 동작을 확장**할 수 있습니다.
+* 기존 코드를 수정할수록 의도치 않은 버그가 발생하거나, 다른 동작에 영향을 미칠 위험이 증가합니다.
+* 이는 OCP 원칙의 "기존 코드는 수정하지 않는다"는 원칙에 어긋납니다.
+
+***
+
+**2. 조건문이 늘어나면서 코드 복잡도가 증가**
+
+* `switch-case` 블록은 상태가 추가될수록 분기 조건이 많아지고 코드가 장황해집니다. 예를 들어:
+
+```dart
+case NotificationType.type1:
+case NotificationType.type2:
+case NotificationType.type3:
+...
+```
+
+* 분기 처리가 많아질수록 코드의 **가독성**과 **유지보수성**이 떨어지고, 새로운 상태를 추가하거나 기존 상태를 변경하는 작업이 점점 어려워집니다.
+* 이러한 구조는 상태를 확장하려 할 때, 시스템의 복잡도가 기하급수적으로 늘어나는 경향을 보입니다.
+
+***
+
+**3. 책임 분리가 안 된 구조**
+
+`switch-case` 구조에서는 하나의 함수(`sendNotification`)가 모든 상태(NotificationType)에 대한 처리를 담당하고 있습니다. 이로 인해 다음 문제가 발생합니다:
+
+* 함수가 \*\*단일 책임 원칙(SRP)\*\*을 위반합니다.
+  * `sendNotification`은 알림을 "전송"하는 것 외에, 각 상태의 구체적인 처리를 "결정"하는 책임도 가지고 있습니다.
+* 새로운 상태가 추가될 때마다, 함수가 점점 더 많은 책임을 떠안게 되어 유지보수가 어려워집니다.
+
+***
+
+#### OCP 위반의 근본 원인: 현재 `switch-case문이`**확장이 아닌 수정 기반의 구조**
+
+* **OCP 준수의 핵심은 기존 코드의 변경 없이 새로운 기능을 추가하는 것**입니다.
+* 그러나 `switch-case` 블록은 새로운 상태를 추가할 때 **수정**이 필요합니다. 이는 확장을 위해 기존 코드를 수정해야 하는 "수정 기반 구조"이기 때문입니다.
+
+### 다형성 기반으로 리팩토링 (After)
+
+**Step 1: 추상 클래스 정의**
+
+`NotificationSender`라는 추상 클래스를 만들어, 알림 전송의 공통 동작을 정의합니다.
+
+```dart
+abstract class NotificationSender {
+  void send(String message);
+}
+```
+
+**Step 2: 각 동작을 클래스로 구현**
+
+`NotificationType`에 따라 알림 전송 방식이 달라지므로 각 유형에 맞는 클래스를 작성하여 `send` 메서드를 구현합니다.
+
+```dart
+class EmailNotificationSender implements NotificationSender {
+  @override
+  void send(String message) {
+    print('Sending email: $message');
+  }
+}
+
+class SmsNotificationSender implements NotificationSender {
+  @override
+  void send(String message) {
+    print('Sending SMS: $message');
+  }
+}
+
+class PushNotificationSender implements NotificationSender {
+  @override
+  void send(String message) {
+    print('Sending push notification: $message');
+  }
+}
+
+## 새로운 상태가 필요하다면 기존 코드를 수정하지 않고 새로운 클래스만 추가하면 됩니다
+class InAppNotificationSender implements NotificationSender {
+  @override
+  void send(String message) {
+    print('Sending in-app notification: $message');
+  }
+}
+```
+
+**Step 3: 팩토리 패턴으로 Enum 매핑**
+
+`NotificationType`을 받아 적절한 `NotificationSender` 객체를 반환하는 팩토리 메서드를 추가합니다. 이 메서드를 통해 조건문을 없앨 수 있습니다.
+
+```dart
+NotificationSender getNotificationSender(NotificationType type) {
+  switch (type) {
+    case NotificationType.email:
+      return EmailNotificationSender();
+    case NotificationType.sms:
+      return SmsNotificationSender();
+    case NotificationType.push:
+      return PushNotificationSender();
+    case NotificationType.inApp: ## 새로운 상태 추가됨
+      return InAppNotificationSender();
+  }
+}
+```
+
+**Step 4: 클라이언트 코드**
+
+이제 `NotificationType`에 따라 적절한 `NotificationSender` 객체를 가져와서 `send` 메서드를 호출합니다. 조건문이 없어지고, 각 알림 유형이 독립적으로 처리됩니다.
+
+```dart
+void main() {
+  NotificationType type = NotificationType.email;
+  String message = "Hello, this is a test notification.";
+
+  NotificationSender sender = getNotificationSender(type);
+  sender.send(message); // Output: Sending email: Hello, this is a test notification.
+}
+```
+
+***
+
+#### 개선된 점
+
+1. **조건문 제거**:
+   * `switch-case` 문 대신 다형성을 활용하여 각 알림 유형을 독립적인 객체로 처리하므로 조건문을 없앴습니다.
+2. **OCP 준수**:
+   * 새로운 알림 유형이 추가될 때마다 `NotificationSender` 인터페이스를 구현한 새로운 클래스를 추가하고, `getNotificationSender`에서 그에 맞는 클래스를 반환하기만 하면 됩니다.
+   * 기존 코드는 수정하지 않아도 되므로 **개방-폐쇄 원칙**(OCP, Open/Closed Principle)을 준수하게 됩니다.
+3. **응집도 향상**:
+   * 각 알림 유형에 대한 동작은 해당 클래스로 분리되어 각 클래스가 하나의 책임만 갖도록 모듈화되었습니다. 이로 인해 코드의 응집도가 향상됩니다.
+4. **테스트 용이성**:
+   * 각 클래스가 독립적이므로, 개별적으로 단위 테스트를 할 수 있어 테스트가 용이해졌습니다.
+
+### 결론
+
+`switch-case`는 상태별로 분기를 처리하기 위해 항상 기존 코드를 수정해야만 합니다. 이는 확장보다는 **수정 기반의 설계**이며, 새로운 상태 추가 시 OCP(개방-폐쇄 원칙)를 위반합니다. 반면, 다형성을 사용하면 상태별 동작이 독립적으로 분리되어 기존 코드의 수정 없이 새로운 상태를 확장할 수 있어 OCP를 준수하게 됩니다.
