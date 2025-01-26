@@ -46,6 +46,13 @@ void updateUserProfile(String username, BuildContext context) {
 
 ### 2.  조건문을 다형성으로 바꾸기 (Replace Conditional with _PolyMorphism)_
 
+
+
+조건문을 다형성으로 바꾸는 리팩토링 기법은 코드의 유지보수성을 높이고 확장성을 개선하는 데 유용합니다.
+
+&#x20;아래에서 `if-else`나 `switch-case`를 다형성으로 대체하는 방법을 설명하겠습니다. \
+이 방식은 보통 상태에 따라 다르게 행동해야 하는 경우나, 반복적으로 조건문을 사용하는 경우에 효과적입니다.
+
 #### 기존 코드 (Before)
 
 조건문과 `else`를 사용하여 상태에 따라 출력 메시지를 처리하는 코드:
