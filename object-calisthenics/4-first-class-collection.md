@@ -210,22 +210,18 @@ void main() {
 class OrderItems {
   final List<OrderItem> _items = []; // 내부 컬렉션은 외부에 직접 노출되지 않음
 
-  /// 아이템을 추가하는 메서드
   void add(OrderItem item) {
     _items.add(item); // 외부에서는 이 메서드를 통해서만 컬렉션 변경 가능
   }
 
-  /// 아이템을 제거하는 메서드
   void remove(OrderItem item) {
     _items.remove(item); // 외부에서는 이 메서드를 통해서만 컬렉션 변경 가능
   }
 
-  /// 아이템 리스트 전체를 지우는 메서드
   void clear() {
     _items.clear(); // 컬렉션의 모든 아이템을 제거
   }
 
-  /// 아이템을 업데이트하는 메서드 (같은 이름의 아이템을 찾아서 수정)
   void update(OrderItem oldItem, OrderItem newItem) {
     final index = _items.indexOf(oldItem);
     if (index != -1) {
@@ -274,8 +270,18 @@ void main() {
   // 7. 컬렉션 전체 지우기
   order.orderItems.clear();
   print(order.orderItems.items);  // []
+  
+  // 8. 외부에서 Order 클래스에서 직접 컬렉션 수정 불가
+  // order.items.add(OrderItem("Orange", 2, 1.5)); // 오류 발생: 'add'가 정의되지 않음
 }
 ```
+
+* **`OrderItems`**:
+  * `OrderItems`는 컬렉션 관리의 책임을 맡고 있습니다. `add`, `remove`, `clear`, `update` 메서드를 통해 데이터를 수정할 수 있습니다.
+  * `items` getter는 `List.unmodifiable`을 사용하여, 외부에서는 읽기만 할 수 있도록 합니다.
+* **`Order`**:
+  * `Order` 클래스는 **ViewModel** 역할을 합니다. `OrderItems` 객체를 포함하고 있으며, **컬렉션의 수정은 불가능**합니다. 외부에서는 `Order` 객체의 `items`를 통해 읽을 수 있지만, 컬렉션을 수정하려면 `OrderItems`를 통해 직접 수정해야 합니다.
+  * `order.items.add()`와 같은 **수정**은 `Order` 클래스에서 직접 호출할 수 없습니다. `order.items`는 읽기 전용이기 때문에 수정이 불가능합니다.
 
 **3. 상태와 행위의 캡슐화**
 
