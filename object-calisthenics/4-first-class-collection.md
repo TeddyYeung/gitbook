@@ -1,12 +1,16 @@
+---
+description: >-
+  "일급 컬렉션"이란 컬렉션(리스트, 맵 등)을 별도의 클래스로 감싸, 컬렉션과 관련된 비즈니스 로직을 한 곳에 캡슐화하는 원칙입니다. 이를
+  통해 컬렉션의 불필요한 외부 노출을 방지하고, 데이터를 구조화하며, 도메인 규칙을 명확히 표현할 수 있습니다.
+---
+
 # 규칙 4: 일급 콜렉션 사용 (First Class Collection)
-
-"일급 컬렉션"이란 컬렉션(리스트, 맵 등)을 별도의 클래스로 감싸, 컬렉션과 관련된 **비즈니스 로직**을 한 곳에 캡슐화하는 원칙입니다. 이를 통해 컬렉션의 **불필요한 외부 노출을 방지**하고, 데이터를 구조화하며, **도메인 규칙을 명확히 표현**할 수 있습니다.
-
-***
 
 #### Flutter 예제: `Order`와 `OrderItem`을 활용한 일급 컬렉션
 
-**1️⃣ Before: 일반 컬렉션 사용**
+***
+
+### &#x20;**Before: 일반 컬렉션 사용**
 
 ```dart
 class OrderItem {
@@ -17,15 +21,18 @@ class OrderItem {
   OrderItem(this.name, this.quantity, this.price);
 }
 
+// 문제점: Order 클래스가 컬렉션 관리와 비즈니스 로직 모두를 처리
 class Order {
-  final List<OrderItem> items;
+  final List<OrderItem> items; // 컬렉션 직접 노출 (문제 발생 가능)
 
   Order(this.items);
 
+  // 컬렉션 관리 로직
   void addItem(OrderItem item) {
-    items.add(item);
+    items.add(item); // 컬렉션 관리 책임을 Order 클래스가 담당
   }
 
+  // 비즈니스 로직: 총 가격 계산
   double calculateTotalPrice() {
     return items.fold(0, (total, item) => total + (item.price * item.quantity));
   }
@@ -33,25 +40,28 @@ class Order {
 
 void main() {
   final order = Order([]);
+  
+  // 컬렉션 관리 로직을 직접 호출
   order.addItem(OrderItem("Apple", 3, 2.5));
   order.addItem(OrderItem("Banana", 5, 1.2));
 
+  // 비즈니스 로직 호출
   print("Total Price: ${order.calculateTotalPrice()}"); // Total Price: 13.0
 }
+
 ```
 
 문제점 \
 
 
-**1. 비즈니스 종속적 로직 분산: 컬렉션 로직과 혼재**
+1️⃣ **컬렉션 관리와 비즈니스 로직의 혼재**
 
 `Order` 클래스는 본래 **"주문"이라는 도메인을 표현**해야 합니다. 하지만 현재 코드는 다음과 같은 문제가 있습니다:
 
-* **컬렉션 관리 로직**(예: `addItem`)과 **도메인 비즈니스 로직**(예: `calculateTotalPrice`)이 `Order` 클래스에 혼재되어 있음.
-* `addItem`은 컬렉션의 관리와 관련된 로직으로, 이는 `List<OrderItem>` 컬렉션 자체와 밀접한 연관이 있음.\
-  이 로직은 `Order` 클래스가 아니라 컬렉션 관리에 특화된 별도 클래스에서 담당해야 유지보수가 용이합니다.
-* `calculateTotalPrice`는 도메인 로직이지만, 컬렉션과 직접 상호작용하기 때문에 컬렉션 로직과 밀접히 얽혀 있음.\
-  이는 컬렉션 관리 책임과 도메인 책임이 분리되지 않았음을 나타냅니다.
+* `addItem`은 컬렉션 관리 로직으로, `List<OrderItem>`과 관련된 책임.
+  * 이 로직은 컬렉션 자체의 관리에 국한되므로, 별도의 컬렉션 관리 클래스에서 처리해야 더 구조적입니다.
+* `calculateTotalPrice`는 주문의 총 가격을 계산하는 **비즈니스 로직**으로, 도메인에 대한 책임을 다룹니다.
+  * 하지만 현재는 컬렉션과 직접 상호작용하기 때문에 컬렉션 관리와 얽혀 있습니다.
 
 **결과적으로**:
 
@@ -83,31 +93,31 @@ void main() {
 * 이로 인해 `Order` 클래스 내부에서 관리해야 할 **컬렉션 상태**가 **외부로 유출**됩니다.
 * 예기치 않은 변경이 발생하면, `Order` 클래스의 의도된 동작이 깨지고, 데이터가 비정상적으로 처리될 위험이 있습니다.
 
-**3. 불변성 보장 부족: 데이터 무결성 깨질 위험**
+**3. 불변성 보장 부족**
 
-`List<OrderItem>`이 외부에 노출되고, 내부적으로 가변적인 컬렉션(List)을 사용하고 있기 때문에 **데이터 무결성**문제가 발생할 수 있습니다:
+`final` 키워드는 **객체의 재할당을 방지**하지만, 객체의 **내부 상태 변경**을 막지 않습니다. 즉, `final List<OrderItem> items`는 한 번만 할당할 수 있지만, **리스트 내부의 요소**는 변경할 수 있습니다.
 
-* 외부에서 컬렉션을 **변경 가능한 상태로 접근**하므로, `Order` 클래스는 데이터 무결성을 보장할 수 없습니다.
-*   예를 들어:
+**문제 예시:**
 
-    ```dart
-    final order = Order([]);
-    order.items.add(OrderItem("Apple", 3, 2.5)); // 정상 추가
-    order.items[0] = OrderItem("Banana", 1, 1.0); // 외부에서 수정
-    print(order.items); // [OrderItem("Banana", 1, 1.0)]
-    ```
+```dart
+void main() {
+  final order = Order([]);
 
-    외부에서 직접 요소를 수정하거나, 컬렉션을 비워버리는 작업이 가능하며, 이는 `Order` 클래스가 원하지 않는 상태로 변할 수 있음을 의미합니다.
-*   또한, 이러한 무분별한 변경은 `calculateTotalPrice` 같은 메서드가 의도한 대로 작동하지 않을 가능성을 증가시킵니다. 예를 들어:
+  // 외부에서 컬렉션에 요소 추가
+  order.items.add(OrderItem("Apple", 3, 2.5));
+  
+  // 외부에서 컬렉션의 요소를 수정
+  order.items[0] = OrderItem("Banana", 1, 1.0);
+  
+  print(order.items); // [OrderItem("Banana", 1, 1.0)]
+}
+```
 
-    ```dart
-    final order = Order([]);
-    order.addItem(OrderItem("Apple", 3, 2.5)); 
-    order.items.clear(); // 컬렉션 비움
-    print(order.calculateTotalPrice()); // 결과: 0.0 (예기치 않은 상태)
-    ```
+**문제점:**
 
-
+* `final`로 선언된 `items`는 **재할당을 방지**하지만, 리스트 내부에 저장된 **아이템의 수정**이나 **리스트의 내용 변경**은 여전히 가능합니다.
+* 외부에서 리스트의 요소를 수정하거나, 컬렉션을 변경할 수 있어 **불변성**을 보장할 수 없습니다.
+* 이로 인해 `Order` 클래스의 데이터 무결성이 **손상될** 수 있으며, 비즈니스 로직에서 예기치 않은 동작을 유발할 수 있습니다.
 
 ***
 
@@ -122,6 +132,158 @@ class OrderItem {
   OrderItem(this.name, this.quantity, this.price);
 }
 
+/// 일급 컬렉션: OrderItems
+/// - 컬렉션 관련 로직을 캡슐화하고, 컬렉션 외부 노출을 방지.
+/// - 불변성을 보장하기 위해 내부 컬렉션은 private으로 관리하고, 읽기 전용 리스트를 외부에 제공.
+class OrderItems {
+  final List<OrderItem> _items = []; // 내부 컬렉션은 외부에 직접 노출되지 않음
+
+  /// 컬렉션에 아이템을 추가
+  void add(OrderItem item) {
+    _items.add(item); // 외부에서는 이 메서드를 통해서만 컬렉션 변경 가능
+  }
+
+  /// 총 가격 계산 (비즈니스 로직)
+  double get totalPrice {
+    return _items.fold(0, (total, item) => total + (item.price * item.quantity));
+  }
+
+  /// 아이템 개수 반환
+  int get itemCount => _items.length;
+
+  /// 읽기 전용 리스트 제공 (불변성 보장)
+  List<OrderItem> get items => List.unmodifiable(_items);
+
+  @override
+  String toString() {
+    return _items.map((item) => "${item.name} (${item.quantity}x)").join(", ");
+  }
+}
+
+/// Order 클래스
+/// - OrderItems를 통해 컬렉션을 관리.
+/// - Order는 도메인 로직에만 집중 (단일 책임 원칙 준수).
+class Order {
+  final OrderItems orderItems;
+
+  Order(this.orderItems);
+
+  /// 주문 요약 출력 (비즈니스 로직)
+  void printSummary() {
+    print("Order Summary: $orderItems"); // OrderItems의 toString() 활용
+    print("Total Items: ${orderItems.itemCount}");
+    print("Total Price: ${orderItems.totalPrice}");
+  }
+}
+
+void main() {
+  // Order와 OrderItems 사용
+  final order = Order(OrderItems());
+
+  // OrderItems를 통해 컬렉션 관리
+  order.orderItems.add(OrderItem("Apple", 3, 2.5));
+  order.orderItems.add(OrderItem("Banana", 5, 1.2));
+
+  // 주문 요약 출력
+  order.printSummary();
+  // Order Summary: Apple (3x), Banana (5x)
+  // Total Items: 2
+  // Total Price: 13.0
+}
+
+```
+
+***
+
+#### 개선된 점&#x20;
+
+**1. 비즈니스 종속적 로직 구조 개선**
+
+* `add`, `totalPrice`, `itemCount` 등 **컬렉션에 종속되었던 비즈니스 로직**이 `OrderItems` 클래스로 이동하여 구조가 명확해짐.
+* `Order` 클래스는 오직 주문과 관련된 상위 도메인 로직만 다루며, 역할이 분리됨.
+
+**2. 불변성 보장**
+
+* **일급 컬렉션**을 사용하여, 컬렉션을 **내부에 감추고**, 외부에서는 읽기 전용으로만 접근할 수 있도록 합니다.
+* `List.unmodifiable()`을 사용하여 컬렉션을 **불변**으로 만들어, 외부에서 컬렉션을 수정할 수 없게 차단합니다.
+
+```dart
+class OrderItems {
+  final List<OrderItem> _items = []; // 내부 컬렉션은 외부에 직접 노출되지 않음
+
+  /// 아이템을 추가하는 메서드
+  void add(OrderItem item) {
+    _items.add(item); // 외부에서는 이 메서드를 통해서만 컬렉션 변경 가능
+  }
+
+  /// 아이템을 제거하는 메서드
+  void remove(OrderItem item) {
+    _items.remove(item); // 외부에서는 이 메서드를 통해서만 컬렉션 변경 가능
+  }
+
+  /// 아이템 리스트 전체를 지우는 메서드
+  void clear() {
+    _items.clear(); // 컬렉션의 모든 아이템을 제거
+  }
+
+  /// 아이템을 업데이트하는 메서드 (같은 이름의 아이템을 찾아서 수정)
+  void update(OrderItem oldItem, OrderItem newItem) {
+    final index = _items.indexOf(oldItem);
+    if (index != -1) {
+      _items[index] = newItem; // 해당 아이템을 새로운 아이템으로 대체
+    }
+  }
+
+  /// 아이템 개수 반환 (불변성 보장)
+  int get itemCount => _items.length;
+
+  /// 읽기 전용 리스트 제공 (불변성 보장)
+  List<OrderItem> get items => List.unmodifiable(_items);
+
+  @override
+  String toString() {
+    return _items.map((item) => "${item.name} (${item.quantity}x)").join(", ");
+  }
+}
+
+// 외부에서의 호출 
+void main() {
+  // 1. Order와 OrderItems 객체 생성
+  final order = Order(OrderItems());
+
+  // 2. OrderItems를 통해 컬렉션 관리
+  order.orderItems.add(OrderItem("Apple", 3, 2.5));
+  order.orderItems.add(OrderItem("Banana", 5, 1.2));
+
+  // 3. 주문 요약 출력
+  order.printSummary();
+
+  // 4. 불변 리스트 조회 가능 (외부에서 리스트 수정 불가)
+  final items = order.orderItems.items;
+  print(items);  // Apple (3x), Banana (5x)
+
+  // 5. 아이템 제거
+  order.orderItems.remove(OrderItem("Apple", 3, 2.5));  // "Apple" 아이템 제거
+  print(order.orderItems.items);  // [Banana (5x)]
+
+  // 6. 아이템 업데이트 (예: "Banana"의 수량을 7로 변경)
+  final oldItem = OrderItem("Banana", 5, 1.2);
+  final newItem = OrderItem("Banana", 7, 1.2);
+  order.orderItems.update(oldItem, newItem);
+  print(order.orderItems.items);  // [Banana (7x)]
+
+  // 7. 컬렉션 전체 지우기
+  order.orderItems.clear();
+  print(order.orderItems.items);  // []
+}
+```
+
+**3. 상태와 행위의 캡슐화**
+
+* **유지보수 용이**: `add()`, `totalPrice`, `itemCount`, `clear()와 같이`컬렉션을 수정할 수 있는 메서드들이 일관되게 1개의 클래스 내에 존재하므로, 변경이 필요할 때 해당 메서드만 수정하면 됩니다.
+* **상태와 행위의 응집성**: 컬렉션의 상태와 행위를 한 곳에서 처리함으로써 코드의 응집성을 높이고, 외부에서 불필요하게 수정할 수 없게 만들어 안전성을 보장합니다.
+
+```dart
 class OrderItems {
   final List<OrderItem> _items = [];
 
@@ -135,61 +297,11 @@ class OrderItems {
 
   int get itemCount => _items.length;
 
-  List<OrderItem> get items => List.unmodifiable(_items);
-
-  @override
-  String toString() {
-    return _items.map((item) => "${item.name} (${item.quantity}x)").join(", ");
+  void clear() {
+    _items.clear(); 
   }
-}
-
-class Order {
-  final OrderItems orderItems;
-
-  Order(this.orderItems);
-
-  void printSummary() {
-    print("Order Summary: $orderItems");
-    print("Total Items: ${orderItems.itemCount}");
-    print("Total Price: ${orderItems.totalPrice}");
-  }
-}
-
-void main() {
-  final order = Order(OrderItems());
-  order.orderItems.add(OrderItem("Apple", 3, 2.5));
-  order.orderItems.add(OrderItem("Banana", 5, 1.2));
-
-  order.printSummary();
-  // Order Summary: Apple (3x), Banana (5x)
-  // Total Items: 2
-  // Total Price: 13.0
 }
 ```
-
-***
-
-#### 개선된 부분과 장점
-
-**1. 비즈니스 종속적 로직 구조 개선**
-
-* `add`, `totalPrice`, `itemCount` 등 **컬렉션에 종속된 비즈니스 로직**이 `OrderItems` 클래스로 이동하여 구조가 명확해짐.
-* `Order` 클래스는 오직 주문과 관련된 상위 도메인 로직만 다루며, 역할이 분리됨.
-
-**2. 불변성 보장**
-
-일급 컬렉션은 컬렉션의 불변성(immutable)을 보장하기 위해 \
-단순히 `final` 키워드만 사용하는 것이 아니라 **캡슐화**를 통해 값을 안전하게 보호합니다.
-
-* `final`은 변수의 **재할당만 금지**할 뿐, 객체 내부의 상태(컬렉션의 요소 추가, 삭제 등)는 변경될 수 있습니다.
-* 일급 컬렉션에서는 컬렉션(`List<OrderItem>`)을 내부에 감추고, 외부에 노출하지 않습니다.
-* `List.unmodifiable`을 사용해 읽기 전용 컬렉션으로 제공함으로써, 외부에서 컬렉션을 수정하려는 모든 시도를 차단합니다.
-* 이를 통해 데이터 무결성을 보장하고, 예기치 못한 변경으로 인한 버그를 방지할 수 있습니다.
-
-**3. 상태와 행위의 캡슐화**
-
-* 컬렉션의 상태(아이템 목록)와 행위(추가, 총합 계산 등)를 `OrderItems`에서 **한 곳**에서 처리.
-* 유지보수가 쉬워지고, 변경으로 인한 부작용 최소화.
 
 **4. 명확한 컬렉션 객체 이름**
 
@@ -198,5 +310,40 @@ void main() {
 
 **5. 확장성**
 
-* 컬렉션 로직(정렬, 필터링, 중복 방지 등)을 `OrderItems` 클래스 내부에 추가하기 쉬움.
-* 예를 들어, 특정 조건에 따라 아이템을 필터링하거나, 중복된 아이템을 합치는 로직을 추가 가능.
+*   컬렉션 로직을 `OrderItems` 클래스에 집중시키면, **추가적인 기능**을 쉽게 확장할 수 있습니다. \
+    예를 들어, **정렬**이나 **중복 방지** 로직을 추가할 수 있습니다.
+
+    <pre class="language-dart"><code class="lang-dart">class OrderItems {
+      final List&#x3C;OrderItem> _items = [];
+
+      void add(OrderItem item) {
+        _items.add(item);
+      }
+
+      void sortByPrice() {
+        _items.sort((a, b) => a.price.compareTo(b.price)); // 가격 기준으로 정렬 로직 추가 
+      }
+
+      // 중복 방지 로직 추가 
+      bool containsDuplicate() {
+        var seen = &#x3C;String>{};
+        for (var item in _items) {
+          if (seen.contains(item.name)) return true;
+          seen.add(item.name);
+        }
+    <strong>    return false;
+    </strong>  }
+
+      double get totalPrice {
+        return _items.fold(0, (total, item) => total + (item.price * item.quantity));
+      }
+
+      int get itemCount => _items.length;
+
+      List&#x3C;OrderItem> get items => List.unmodifiable(_items);
+    }
+    </code></pre>
+
+
+* 이렇게 로직을 캡슐화하면 **새로운 기능을 추가**할 때, `OrderItems` 클래스 내에서만 작업하면 되므로\
+  &#x20;다른 코드에 영향을 주지 않으며, 유지보수가 쉬워집니다.
