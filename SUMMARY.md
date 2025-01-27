@@ -59,5 +59,5 @@
 * [규칙 5 : 한 줄에 한 점만 사용 (One Dot Per Line)](object-calisthenics/5-one-dot-per-line.md)
 * [규칙 6 : 축약 금지 (Don't Abbreviate)](object-calisthenics/6-dont-abbreviate.md)
 * [규칙 7 : 모든 엔티티를 작게 유지 (Keep All Entities Small)](object-calisthenics/7-keep-all-entities-small.md)
-* [규칙 8. 3개 이상의 인스턴스 변수를 가진 클래스를 사용하지 않는다.  (No classed with more than two instance variables)](object-calisthenics/8.-3-.-no-classed-with-more-than-two-instance-variables.md)
-* [규칙 9. getter/setter/프로퍼티를 사용하지 않는다. (No Getters/Setters/Properties)](object-calisthenics/9.-getter-setter-.-no-getters-setters-properties.md)
+* [규칙 8: 3개 이상의 인스턴스 변수를 가진 클래스를 사용하지 않는다.  (No classed with more than two instance variables)](object-calisthenics/8-3-.-no-classed-with-more-than-two-instance-variables.md)
+* [규칙 9: getter/setter/프로퍼티를 사용하지 않는다. (No Getters/Setters/Properties)](object-calisthenics/9-getter-setter-.-no-getters-setters-properties.md)
