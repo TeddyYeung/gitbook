@@ -447,3 +447,13 @@ void main() {
 }
 ```
 
+#### 주요 변경점:
+
+1. **`OrderItem` Equatable 적용**:
+   * `props`를 통해 객체 비교를 간소화했습니다.
+   * 이제 같은 값의 `OrderItem` 객체는 `==`로 바로 비교 가능합니다.
+2. **간결한 메서드 체이닝**:
+   * `add`, `remove`, `update`, `clear` 모두 새로운 `OrderItems` 객체를 반환하도록 구현.
+   * 불필요한 `final` 변수를 사용하지 않고, 체이닝이 간단해졌습니다.
+3. **Const 사용**:
+   * `OrderItem`에 `const`를 활용해 객체 생성 시 성능 최적화.
