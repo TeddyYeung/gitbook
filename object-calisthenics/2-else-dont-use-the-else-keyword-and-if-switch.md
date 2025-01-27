@@ -1,8 +1,4 @@
----
-description: 2. Don't Use the ELSE Keyword
----
-
-# 2: else 예약어 금지 & 다형성으로 IF문, Switch문 리팩토링하기
+# 규칙 2: else 예약어 금지 (Don't Use the ELSE Keyword) & 다형성으로 IF문, Switch문 리팩토링하기
 
 ### **문제점: 왜 `else`를 피해야 할까?**
 
