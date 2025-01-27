@@ -352,3 +352,98 @@ class OrderItems {
 
 * 이렇게 로직을 캡슐화하면 **새로운 기능을 추가**할 때, `OrderItems` 클래스 내에서만 작업하면 되므로\
   &#x20;다른 코드에 영향을 주지 않으며, 유지보수가 쉬워집니다.
+
+## 번외 : 만약 객체복사 방식으로 구현한다면&#x20;
+
+```dart
+import 'package:equatable/equatable.dart';
+
+class OrderItems {
+  final List<OrderItem> _items;
+
+  /// 생성자: 내부 리스트 초기화 (기본값은 빈 리스트)
+  OrderItems([List<OrderItem>? items]) : _items = List.unmodifiable(items ?? []);
+
+  /// 새로운 아이템 추가
+  OrderItems add(OrderItem item) => OrderItems([..._items, item]);
+
+  /// 특정 아이템 제거
+  OrderItems remove(OrderItem item) =>
+      OrderItems(_items.where((i) => i != item).toList());
+
+  /// 특정 아이템 업데이트
+  OrderItems update(OrderItem oldItem, OrderItem newItem) => OrderItems(
+      _items.map((item) => item == oldItem ? newItem : item).toList());
+
+  /// 전체 아이템 제거 - 새 빈 객체로 반환 
+  OrderItems clear() => OrderItems();
+
+  /// 읽기 전용 리스트 제공
+  List<OrderItem> get items => _items;
+
+  /// 아이템 개수
+  int get itemCount => _items.length;
+
+  @override
+  String toString() =>
+      _items.map((item) => "${item.name} (${item.quantity}x)").join(", ");
+}
+
+class Order {
+  final OrderItems orderItems;
+
+  const Order(this.orderItems);
+
+  /// 새로운 Order 생성
+  Order copyWith(OrderItems newOrderItems) => Order(newOrderItems);
+
+  /// 주문 요약 출력
+  void printSummary() {
+    print("Order Summary: $orderItems");
+  }
+}
+
+class OrderItem extends Equatable {
+  final String name;
+  final int quantity;
+  final double price;
+
+  const OrderItem(this.name, this.quantity, this.price);
+
+  @override
+  List<Object?> get props => [name, quantity, price];
+
+  @override
+  String toString() => "$name ($quantity x)";
+}
+
+// 외부에서의 호출
+void main() {
+  // 1. Order와 OrderItems 생성
+  var order = Order(OrderItems());
+
+  // 2. 아이템 추가 (새로운 Order 생성)
+  order = order.copyWith(order.orderItems.add(const OrderItem("Apple", 3, 2.5)));
+  order = order.copyWith(order.orderItems.add(const OrderItem("Banana", 5, 1.2)));
+
+  // 3. 주문 요약 출력
+  order.printSummary(); // Order Summary: Apple (3x), Banana (5x)
+
+  // 4. 아이템 제거
+  order = order.copyWith(
+      order.orderItems.remove(const OrderItem("Apple", 3, 2.5)));
+  print(order.orderItems.items); // [Banana (5x)]
+
+  // 5. 아이템 업데이트
+  order = order.copyWith(order.orderItems.update(
+    const OrderItem("Banana", 5, 1.2),
+    const OrderItem("Banana", 7, 1.2),
+  ));
+  print(order.orderItems.items); // [Banana (7x)]
+
+  // 6. 전체 아이템 제거
+  order = order.copyWith(order.orderItems.clear());
+  print(order.orderItems.items); // []
+}
+```
+
