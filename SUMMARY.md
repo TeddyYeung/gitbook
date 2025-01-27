@@ -52,6 +52,7 @@
 
 ## 객체지향 생활체조 원칙 (Object Calisthenics)
 
-* [규칙 1.  한 메서드에 오직 한 단계의 들여쓰기만 한다. (Only one level of indentation in a method)](object-calisthenics/1.-.-only-one-level-of-indentation-in-a-method.md)
-* [규칙 2: else 예약어 금지 (Don't Use the ELSE Keyword) & 다형성으로 IF문, Switch문 리팩토링하기](object-calisthenics/2-else-dont-use-the-else-keyword-and-if-switch.md)
+* [규칙 1.  한 메서드에 오직 한 단계의 들여쓰기만 한다. (Only one level of indentation in a method)](object-calisthenics/1.-..md)
+* [규칙 2: else 예약어 금지 (Don't Use the ELSE Keyword) & 다형성으로 IF문, Switch문 리팩토링하기](object-calisthenics/2-else-dont-use-the-else-keyword.md)
 * [규칙 3 : 원시값과 문자열의 포장 (Wrap All Primitives And Strings)](object-calisthenics/3-wrap-all-primitives-and-strings.md)
+* [규칙 4: 일급 콜렉션 사용 (First Class Collection)](object-calisthenics/4-first-class-collection.md)
