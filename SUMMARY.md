@@ -57,3 +57,4 @@
 * [규칙 3 : 원시값과 문자열의 포장 (Wrap All Primitives And Strings)](object-calisthenics/3-wrap-all-primitives-and-strings.md)
 * [규칙 4: 일급 콜렉션 사용 (First Class Collection)](object-calisthenics/4-first-class-collection.md)
 * [규칙 5 : 한 줄에 한 점만 사용 (One Dot Per Line)](object-calisthenics/5-one-dot-per-line.md)
+* [규칙 6 : 축약 금지 (Don't Abbreviate)](object-calisthenics/6-dont-abbreviate.md)
