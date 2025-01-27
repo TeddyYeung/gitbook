@@ -56,3 +56,4 @@
 * [규칙 2: else 예약어 금지 (Don't Use the ELSE Keyword) & 다형성으로 IF문, Switch문 리팩토링하기](object-calisthenics/2-else-dont-use-the-else-keyword.md)
 * [규칙 3 : 원시값과 문자열의 포장 (Wrap All Primitives And Strings)](object-calisthenics/3-wrap-all-primitives-and-strings.md)
 * [규칙 4: 일급 콜렉션 사용 (First Class Collection)](object-calisthenics/4-first-class-collection.md)
+* [규칙 5 : 한 줄에 한 점만 사용 (One Dot Per Line)](object-calisthenics/5-one-dot-per-line.md)
