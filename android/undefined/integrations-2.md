@@ -8,7 +8,7 @@ icon: plug-circle-plus
 
 안드로이드에서 사용할 수 있는 대표적인 HTTP 클라이언트는 아래와 같습니다:
 
-<div align="left"><figure><img src="../.gitbook/assets/image (15).png" alt="" width="312"><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/image (15).png" alt="" width="312"><figcaption></figcaption></figure></div>
 
 * **Ktor**: 코틀린 기반의 비동기 HTTP 클라이언트로, 서버 개발과 클라이언트 개발 모두에서 사용
 * **OkHttp**: Retrofit의 기반이 되는 HTTP 클라이언트로, 간단한 HTTP 작업에 적합\
@@ -18,7 +18,7 @@ icon: plug-circle-plus
 
 ### 2. Retrofit의 기본 개념
 
-<div align="left"><figure><img src="../.gitbook/assets/image (17).png" alt="" width="563"><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/image (17).png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 Retrofit은 **인터페이스 기반**으로 작동하며, \
 API 호출을 추상화하여 코드를 간단하고 가독성 좋게 작성할 수 있게 도와줍니다.

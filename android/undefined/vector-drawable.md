@@ -13,7 +13,7 @@
 
 이 중 VectorDrawable은 XML 파일에서 연관된 색상 정보와 함께 점, 선, 곡선의 조합으로 정의되는 벡터 그래픽
 
-* ![](<../.gitbook/assets/image (1) (1) (1) (1).png>)\
+* ![](<../../.gitbook/assets/image (1) (1) (1) (1).png>)\
 
 * 벡터 그래픽은 path 및 group 개체로 구성되는 트리 계층 구조로 정의됨\
   \- 각 path에는 객체 윤곽선의 도형이 포함되고 group에는 변환에 관한 세부 정보가 포함됩니다. \

@@ -2,9 +2,9 @@
 icon: plug-circle-plus
 ---
 
-# Coroutines
+# 코루틴 개념 및 사용
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p>코루틴을 사용하여 메인 스레드와 네트워크 스레드 간 작업을 효율적으로 분리하는 방법</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption><p>코루틴을 사용하여 메인 스레드와 네트워크 스레드 간 작업을 효율적으로 분리하는 방법</p></figcaption></figure>
 
 1. **Main Thread (메인 스레드)**:
    * 메인 스레드는 UI 작업(예: **Drawing events**)과 같은 사용자 인터페이스 관련 이벤트를 처리합니다.
@@ -29,7 +29,7 @@ icon: plug-circle-plus
 
 **Retrofit과 Coroutines를 사용해 원격 데이터 가져오기**
 
-<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption><p><strong>CoroutineScope</strong></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption><p><strong>CoroutineScope</strong></p></figcaption></figure>
 
 **Coroutines와 메인 스레드 반응성**
 
@@ -40,7 +40,7 @@ icon: plug-circle-plus
 
 **안드로이드에서의 Scope 활용**
 
-<div align="left"><figure><img src="../.gitbook/assets/image (21).png" alt="" width="371"><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/image (21).png" alt="" width="371"><figcaption></figcaption></figure></div>
 
 * 안드로이드 **Jetpack** 컴포넌트는 `LifecycleScope`, `ViewModelScope`, `LiveDataScope`와 같은 Scope를 제공한다.
 * 이러한 Scope는 Activity나 Fragment 등의 생명주기와 연동되며, 생명주기가 종료되면 관련 Coroutine이 자동으로 취소된다.

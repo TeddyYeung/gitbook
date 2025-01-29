@@ -42,7 +42,7 @@ Android에서 인텐트는 크게 두 가지로 나뉩니다:
 
 **3. 인텐트 동작 및 사용**&#x20;
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>인텐트 동작 과정 시각화</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>인텐트 동작 과정 시각화</p></figcaption></figure>
 
 1. **사용자 액션**
    * 메인 액티비티 클래스에서 사용자가 버튼을 클릭하면, `startActivity`를 호출하여 암시적 인텐트를 전달합니다.
