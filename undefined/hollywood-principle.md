@@ -1,4 +1,4 @@
-# \[객체지향 원칙] 헐리우드 원칙(Hollywood Principle)
+# &#x20;\[객체지향 원칙] 헐리우드 원칙(Hollywood Principle)
 
 #### 🌟 **헐리우드 원칙 (Hollywood Principle)란?**
 
