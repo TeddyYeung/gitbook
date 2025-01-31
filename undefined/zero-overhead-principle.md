@@ -138,7 +138,7 @@ class _CounterWidgetState extends State<CounterWidget> {
 **After (위젯 빌드 최적화)**
 
 ```dart
-dart복사편집class CounterWidget extends StatefulWidget {
+class CounterWidget extends StatefulWidget {
   @override
   _CounterWidgetState createState() => _CounterWidgetState();
 }
