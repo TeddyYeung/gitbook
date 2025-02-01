@@ -99,3 +99,7 @@ void main() {
 
 
 
+### 참고&#x20;
+
+[https://github.com/TeddyYeung/guide-to-testable-code/blob/main/flaw-digging-into-colaborators.md](https://github.com/TeddyYeung/guide-to-testable-code/blob/main/flaw-digging-into-colaborators.md)
+
