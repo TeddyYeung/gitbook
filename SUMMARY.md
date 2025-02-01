@@ -47,6 +47,7 @@
 * [\[개발 원칙\] 보이 스카우트 규칙(Boy Scout Rule)](undefined/boy-scout-rule.md)
 * [ \[객체지향 원칙\] 헐리우드 원칙(Hollywood Principle)](undefined/hollywood-principle.md)
 * [\[개발 원칙\] 제로 오버헤드 원칙(Zero Overhead Principle)](undefined/zero-overhead-principle.md)
+* [\[OOP\] Flaw: Digging into Collaborators](undefined/oop-flaw-digging-into-collaborators.md)
 * [\[객체지향 원칙\] 묻지 말고 말하라 TDA 원칙(Tell, Don’t Ask Principle)](undefined/tda-tell-dont-ask-principle.md)
 * [좋은 코드의 기준 - 토스](undefined/undefined.md)
 
