@@ -41,7 +41,7 @@
 
 Rectangle 클래스에서 중심점을 구하는 예제를 살펴보겠습니다. 아래는 잘못된 설계의 Dart 코드입니다:
 
-```
+```dart
 class Rectangle {
   final int left;
   final int top;
@@ -71,7 +71,7 @@ void main() {
 
 Rectangle 클래스에 중심점을 계산하는 메서드를 추가하면 이 원칙을 준수할 수 있습니다. 개체의 내부 상태를 묻지 않고, 작업을 요청하는 방식으로 변경해봅시다:
 
-```
+```dart
 class Rectangle {
   final int left;
   final int top;
@@ -107,7 +107,7 @@ void main() {
 
 다음은 `Rectangle` 클래스의 내부 상태를 중심점으로 표현하도록 변경한 예제입니다:
 
-```
+```dart
 class Rectangle {
   final double centerX;
   final double centerY;
