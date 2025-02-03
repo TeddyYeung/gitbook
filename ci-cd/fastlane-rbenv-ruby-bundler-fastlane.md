@@ -1,9 +1,3 @@
----
-description: >-
-  Fastlane 사용 시 꼭 읽어봐야 하는 자료  [fastlane] 1. fastlane이란 [iOS 앱 배포 준비] 애플에 배포하기 위한
-  4가지 개념 Fastlane match를 사용한 iOS 인증서 동기화
----
-
 # fastlane 설치하기 (rbenv → 최신 Ruby → Bundler → Fastlane)
 
 Fastlane 사용 시 꼭 읽어봐야 하는 자료&#x20;
