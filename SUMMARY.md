@@ -71,3 +71,7 @@
 ## CI/CD
 
 * [fastlane 설치하기 (rbenv → 최신 Ruby → Bundler → Fastlane)](ci-cd/fastlane-rbenv-ruby-bundler-fastlane.md)
+
+***
+
+* [Mac mini -> Aws Ec2 인스턴스에 gitlab runner 설치](mac-mini-greater-than-aws-ec2-gitlab-runner.md)
