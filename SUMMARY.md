@@ -67,3 +67,7 @@
 * [규칙 7 : 모든 엔티티를 작게 유지 (Keep All Entities Small)](object-calisthenics/7-keep-all-entities-small.md)
 * [규칙 8 : 3개 이상의 인스턴스 변수를 가진 클래스를 사용하지 않는다.  (No classed with more than two instance variables)](object-calisthenics/8-3-.-no-classed-with-more-than-two-instance-variables.md)
 * [규칙 9 : getter/setter/프로퍼티를 사용하지 않는다. (No Getters/Setters/Properties)](object-calisthenics/9-getter-setter-.-no-getters-setters-properties.md)
+
+## CI/CD
+
+* [fastlane 설치하기 (rbenv → 최신 Ruby → Bundler → Fastlane)](ci-cd/fastlane-rbenv-ruby-bundler-fastlane.md)
