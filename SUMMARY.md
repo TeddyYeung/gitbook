@@ -75,3 +75,7 @@
 ***
 
 * [Mac mini -> Aws Ec2 인스턴스에 gitlab runner 설치](mac-mini-greater-than-aws-ec2-gitlab-runner.md)
+
+## etc
+
+* [기술블로그 모음](etc/undefined.md)
