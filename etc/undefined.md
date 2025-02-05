@@ -1,6 +1,7 @@
 # 기술블로그 모음
 
-\## 국내 기업 기술 블로그- \[네이버]\([https://d2.naver.com/home](https://d2.naver.com/home))\
+\## 국내 기업 기술 블로그\
+\- \[네이버]\([https://d2.naver.com/home](https://d2.naver.com/home))\
 \- \[네이버플레이스]\([https://medium.com/naver-place-dev](https://medium.com/naver-place-dev))\
 \- \[삼성]\([https://techblog.samsung.com](https://techblog.samsung.com/))\
 \- \[카카오]\([https://tech.kakao.com](https://tech.kakao.com/))\
